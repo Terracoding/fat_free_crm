@@ -62,5 +62,16 @@ if defined?(FatFreeCRM::Application)
 
     # Send deprecation notices to registered listeners
     config.active_support.deprecation = :notify
+
+    config.action_mailer.default_url_options = { :host => 'terracoding-crm.heroku.com' }
+
+    ActionMailer::Base.smtp_settings = {
+        :address        => "smtp.sendgrid.net",
+        :port           => "587",
+        :authentication => :plain,
+        :user_name      => ENV['SENDGRID_USERNAME'],
+        :password       => ENV['SENDGRID_PASSWORD'],
+        :domain         => "heroku.com"
+    }
   end
 end
